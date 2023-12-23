@@ -1,8 +1,18 @@
-# React + Vite
+### Deploy Vite React App on Github
+1. Make changes to `vite.config.js` by including `base: "/<repo-name>/` as shown in below code
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  base: "/vite-deploy/" // this is we are reffering to.
+})
+```
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Create new folder `.github` and inside it create another folder `workflows` and inside it create file `deploy.yml`.
+3. Copy paste the code of `deploy.yml` from (here)[https://github.com/ErickKS/vite-deploy/blob/main/.github/workflows/deploy.yml] to your own `deploy.yml` file.
+4. Then upload your project to github by creating repository.
+5. Then go to `settings` -> `Actions` -> `general` -> Change `Workflow Permissions` to `Read and Write permissions` -> then click `SAVE`.
+6. Go to `Actions` tab and see the `deployments` performed in action.
